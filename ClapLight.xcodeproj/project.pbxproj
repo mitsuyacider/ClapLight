@@ -16,6 +16,7 @@
 		39D302771E4565EB00A25F5A /* AVCamManualCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39D302711E4565EB00A25F5A /* AVCamManualCameraViewController.m */; };
 		39D302781E4565EB00A25F5A /* AVCamManualPhotoCaptureDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 39D302731E4565EB00A25F5A /* AVCamManualPhotoCaptureDelegate.m */; };
 		39D302791E4565EB00A25F5A /* AVCamManualPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39D302751E4565EB00A25F5A /* AVCamManualPreviewView.m */; };
+		39D3027B1E45763200A25F5A /* CLTopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D3027A1E45763200A25F5A /* CLTopViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		39D302731E4565EB00A25F5A /* AVCamManualPhotoCaptureDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCamManualPhotoCaptureDelegate.m; sourceTree = "<group>"; };
 		39D302741E4565EB00A25F5A /* AVCamManualPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCamManualPreviewView.h; sourceTree = "<group>"; };
 		39D302751E4565EB00A25F5A /* AVCamManualPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCamManualPreviewView.m; sourceTree = "<group>"; };
+		39D3027A1E45763200A25F5A /* CLTopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLTopViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 				392AF3891E3B47C600827707 /* CameraViewController.swift */,
 				392AF3771E3B47AD00827707 /* AppDelegate.swift */,
 				392AF37B1E3B47AD00827707 /* Main.storyboard */,
+				39D3027A1E45763200A25F5A /* CLTopViewController.swift */,
 				392AF37E1E3B47AD00827707 /* Assets.xcassets */,
 				392AF3801E3B47AD00827707 /* LaunchScreen.storyboard */,
 				392AF3831E3B47AD00827707 /* Info.plist */,
@@ -169,6 +172,7 @@
 				39D302791E4565EB00A25F5A /* AVCamManualPreviewView.m in Sources */,
 				39D302761E4565EB00A25F5A /* AVCamManualAppDelegate.m in Sources */,
 				392AF3781E3B47AD00827707 /* AppDelegate.swift in Sources */,
+				39D3027B1E45763200A25F5A /* CLTopViewController.swift in Sources */,
 				39D302771E4565EB00A25F5A /* AVCamManualCameraViewController.m in Sources */,
 				392AF38A1E3B47C600827707 /* CameraViewController.swift in Sources */,
 			);

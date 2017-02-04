@@ -373,6 +373,11 @@ static const float kExposureMinimumDuration = 1.0/1000; // Limit exposure durati
 	self.manualHUDLensStabilizationView.hidden = ( control.selectedSegmentIndex == 4 ) ? NO : YES;
 }
 
+- (IBAction)tappedCloseButton {
+    [self dismissViewControllerAnimated:YES completion:^{}];
+}
+
+
 - (void)setSlider:(UISlider *)slider highlightColor:(UIColor *)color
 {
 	slider.tintColor = color;

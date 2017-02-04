@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ClapLight/CameraViewController.swift"
-            timestampString = "507868018.98013"
+            timestampString = "507868916.179704"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "153"
-            endingLineNumber = "153"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
             landmarkName = "tappedGenerateButton()"
             landmarkType = "7">
          </BreakpointContent>
