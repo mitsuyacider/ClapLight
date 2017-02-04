@@ -13,8 +13,11 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     var captureDevice : AVCaptureDevice?
     var imageList : [CIImage] = []
     var timer : Timer?
-    
-    
+
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+
     @IBOutlet weak var imageView: UIImageView!
     @IBAction func tappedExposure(_ sender: Any) {
         if let device = captureDevice {
@@ -67,26 +70,19 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
         settingsForMonitoring.isHighResolutionPhotoEnabled = false
         stillImageOutput?.capturePhoto(with: settingsForMonitoring, delegate: self)
     }
-    
     override func viewWillAppear(_ animated: Bool) {
         
-        // フラッシュとかカメラの細かな設定
-
         
         captureSesssion = AVCaptureSession()
         stillImageOutput = AVCapturePhotoOutput()
-        
-        captureSesssion.sessionPreset = AVCaptureSessionPresetInputPriority // 解像度の設定
+        stillImageOutput?.isHighResolutionCaptureEnabled = true
+        captureSesssion.sessionPreset = AVCaptureSessionPresetHigh // 解像度の設定
         
         captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
         
         do {
             try captureDevice?.lockForConfiguration()
             captureDevice?.exposureMode = AVCaptureExposureMode.custom
-            
-//            print(captureDevice?.activeFormat.videoSupportedFrameRateRanges ?? 0)
-//            captureDevice?.activeVideoMinFrameDuration  = CMTimeMake(1, 2)
-//            captureDevice?.activeVideoMaxFrameDuration  = CMTimeMake( 4, 2 )
             captureDevice?.unlockForConfiguration()
         } catch {
             // handle error
@@ -104,17 +100,19 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
                 // 出力
                 if (captureSesssion.canAddOutput(stillImageOutput)) {
                     captureSesssion.addOutput(stillImageOutput)
-                    captureSesssion.startRunning() // カメラ起動
-                    
+                    captureSesssion.startRunning()
                     previewLayer = AVCaptureVideoPreviewLayer(session: captureSesssion)
-                    previewLayer?.videoGravity = AVLayerVideoGravityResizeAspect // アスペクトフィット
-                    previewLayer?.connection.videoOrientation = AVCaptureVideoOrientation.portrait // カメラの向き
+                    // Fullscreen
+                    previewLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill
+                    
+                    // NOTE: Should let the orientation fit by current orientation
+                    previewLayer?.connection.videoOrientation = AVCaptureVideoOrientation.landscapeLeft
                     
                     cameraView.layer.addSublayer(previewLayer!)
                     
-                    // ビューのサイズの調整
-                    previewLayer?.position = CGPoint(x: self.cameraView.frame.width / 2, y: self.cameraView.frame.height / 2)
-                    previewLayer?.bounds = cameraView.frame
+                    // Adjust view size
+                    previewLayer?.frame.size.width = cameraView.frame.size.width
+                    previewLayer?.frame.size.height = cameraView.frame.size.height
                 }
             }
         }

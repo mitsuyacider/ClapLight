@@ -8,22 +8,32 @@
 
 /* Begin PBXBuildFile section */
 		392AF3781E3B47AD00827707 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392AF3771E3B47AD00827707 /* AppDelegate.swift */; };
-		392AF37A1E3B47AD00827707 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392AF3791E3B47AD00827707 /* ViewController.swift */; };
 		392AF37D1E3B47AD00827707 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 392AF37B1E3B47AD00827707 /* Main.storyboard */; };
 		392AF37F1E3B47AD00827707 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 392AF37E1E3B47AD00827707 /* Assets.xcassets */; };
 		392AF3821E3B47AD00827707 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 392AF3801E3B47AD00827707 /* LaunchScreen.storyboard */; };
 		392AF38A1E3B47C600827707 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392AF3891E3B47C600827707 /* CameraViewController.swift */; };
+		39D302761E4565EB00A25F5A /* AVCamManualAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 39D3026F1E4565EB00A25F5A /* AVCamManualAppDelegate.m */; };
+		39D302771E4565EB00A25F5A /* AVCamManualCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39D302711E4565EB00A25F5A /* AVCamManualCameraViewController.m */; };
+		39D302781E4565EB00A25F5A /* AVCamManualPhotoCaptureDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 39D302731E4565EB00A25F5A /* AVCamManualPhotoCaptureDelegate.m */; };
+		39D302791E4565EB00A25F5A /* AVCamManualPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39D302751E4565EB00A25F5A /* AVCamManualPreviewView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		392AF3741E3B47AD00827707 /* ClapLight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClapLight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		392AF3771E3B47AD00827707 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		392AF3791E3B47AD00827707 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		392AF37C1E3B47AD00827707 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		392AF37E1E3B47AD00827707 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		392AF3811E3B47AD00827707 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		392AF3831E3B47AD00827707 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		392AF3891E3B47C600827707 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		39D3026E1E4565EB00A25F5A /* AVCamManualAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCamManualAppDelegate.h; sourceTree = "<group>"; };
+		39D3026F1E4565EB00A25F5A /* AVCamManualAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCamManualAppDelegate.m; sourceTree = "<group>"; };
+		39D302701E4565EB00A25F5A /* AVCamManualCameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCamManualCameraViewController.h; sourceTree = "<group>"; };
+		39D302711E4565EB00A25F5A /* AVCamManualCameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCamManualCameraViewController.m; sourceTree = "<group>"; };
+		39D302721E4565EB00A25F5A /* AVCamManualPhotoCaptureDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCamManualPhotoCaptureDelegate.h; sourceTree = "<group>"; };
+		39D302731E4565EB00A25F5A /* AVCamManualPhotoCaptureDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCamManualPhotoCaptureDelegate.m; sourceTree = "<group>"; };
+		39D302741E4565EB00A25F5A /* AVCamManualPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCamManualPreviewView.h; sourceTree = "<group>"; };
+		39D302751E4565EB00A25F5A /* AVCamManualPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCamManualPreviewView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +66,30 @@
 		392AF3761E3B47AD00827707 /* ClapLight */ = {
 			isa = PBXGroup;
 			children = (
+				39D3026D1E4565EB00A25F5A /* AVCamManual */,
 				392AF3891E3B47C600827707 /* CameraViewController.swift */,
 				392AF3771E3B47AD00827707 /* AppDelegate.swift */,
-				392AF3791E3B47AD00827707 /* ViewController.swift */,
 				392AF37B1E3B47AD00827707 /* Main.storyboard */,
 				392AF37E1E3B47AD00827707 /* Assets.xcassets */,
 				392AF3801E3B47AD00827707 /* LaunchScreen.storyboard */,
 				392AF3831E3B47AD00827707 /* Info.plist */,
 			);
 			path = ClapLight;
+			sourceTree = "<group>";
+		};
+		39D3026D1E4565EB00A25F5A /* AVCamManual */ = {
+			isa = PBXGroup;
+			children = (
+				39D3026E1E4565EB00A25F5A /* AVCamManualAppDelegate.h */,
+				39D3026F1E4565EB00A25F5A /* AVCamManualAppDelegate.m */,
+				39D302701E4565EB00A25F5A /* AVCamManualCameraViewController.h */,
+				39D302711E4565EB00A25F5A /* AVCamManualCameraViewController.m */,
+				39D302721E4565EB00A25F5A /* AVCamManualPhotoCaptureDelegate.h */,
+				39D302731E4565EB00A25F5A /* AVCamManualPhotoCaptureDelegate.m */,
+				39D302741E4565EB00A25F5A /* AVCamManualPreviewView.h */,
+				39D302751E4565EB00A25F5A /* AVCamManualPreviewView.m */,
+			);
+			path = AVCamManual;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,8 +165,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				392AF37A1E3B47AD00827707 /* ViewController.swift in Sources */,
+				39D302781E4565EB00A25F5A /* AVCamManualPhotoCaptureDelegate.m in Sources */,
+				39D302791E4565EB00A25F5A /* AVCamManualPreviewView.m in Sources */,
+				39D302761E4565EB00A25F5A /* AVCamManualAppDelegate.m in Sources */,
 				392AF3781E3B47AD00827707 /* AppDelegate.swift in Sources */,
+				39D302771E4565EB00A25F5A /* AVCamManualCameraViewController.m in Sources */,
 				392AF38A1E3B47C600827707 /* CameraViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -270,6 +298,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.goccojapan.ClapLight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -284,6 +313,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.goccojapan.ClapLight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -306,6 +336,7 @@
 				392AF3881E3B47AD00827707 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
