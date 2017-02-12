@@ -124,10 +124,10 @@ static const float kExposureMinimumDuration = 1.0/1000; // Limit exposure durati
 	self.captureModeControl.enabled = NO;
 	self.HUDButton.enabled = NO;
 	
-	self.manualHUD.hidden = YES;
+	self.manualHUD.hidden = NO;
 	self.manualHUDPhotoView.hidden = YES;
 	self.manualHUDFocusView.hidden = YES;
-	self.manualHUDExposureView.hidden = YES;
+	self.manualHUDExposureView.hidden = NO;
 	self.manualHUDWhiteBalanceView.hidden = YES;
 	self.manualHUDLensStabilizationView.hidden = YES;
 	
@@ -355,6 +355,9 @@ static const float kExposureMinimumDuration = 1.0/1000; // Limit exposure durati
 	
 	self.rawControl.enabled = ( self.videoDevice != nil );
 	self.rawControl.selectedSegmentIndex = 0;
+    
+    
+    
 }
 
 - (IBAction)toggleHUD:(id)sender
@@ -430,7 +433,8 @@ static const float kExposureMinimumDuration = 1.0/1000; // Limit exposure durati
 	self.session.sessionPreset = AVCaptureSessionPresetPhoto;
 	
 	// Add video input
-	AVCaptureDevice *videoDevice = [AVCaptureDevice defaultDeviceWithDeviceType:AVCaptureDeviceTypeBuiltInWideAngleCamera mediaType:AVMediaTypeVideo position:AVCaptureDevicePositionUnspecified];
+	AVCaptureDevice *videoDevice = [AVCaptureDevice defaultDeviceWithDeviceType:AVCaptureDeviceTypeBuiltInWideAngleCamera mediaType:AVMediaTypeVideo position:AVCaptureDevicePositionFront];
+    
 	AVCaptureDeviceInput *videoDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:videoDevice error:&error];
 	if ( ! videoDeviceInput ) {
 		NSLog( @"Could not create video device input: %@", error );

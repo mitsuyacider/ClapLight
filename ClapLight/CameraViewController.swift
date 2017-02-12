@@ -65,7 +65,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     func update(tm: Timer) {
         // シャッターを切る
         let settingsForMonitoring = AVCapturePhotoSettings()
-        settingsForMonitoring.flashMode = .auto
+//        settingsForMonitoring.flashMode = .auto
         settingsForMonitoring.isAutoStillImageStabilizationEnabled = true
         settingsForMonitoring.isHighResolutionPhotoEnabled = false
         stillImageOutput?.capturePhoto(with: settingsForMonitoring, delegate: self)
@@ -75,8 +75,9 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
         
         captureSesssion = AVCaptureSession()
         stillImageOutput = AVCapturePhotoOutput()
-        stillImageOutput?.isHighResolutionCaptureEnabled = true
-        captureSesssion.sessionPreset = AVCaptureSessionPresetHigh // 解像度の設定
+//        stillImageOutput?.isHighResolutionCaptureEnabled = true
+//        captureSesssion.sessionPreset = AVCaptureSessionPresetHigh // 解像度の設定
+        captureSesssion.sessionPreset = AVCaptureSessionPresetInputPriority
         
         captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
         
@@ -136,7 +137,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     }
     
     @IBAction func tappedGenerateButton() {
-        if (timer?.isValid)! {
+        if (timer != nil && (timer?.isValid)!) {
             timer?.invalidate()
         }
         
@@ -162,6 +163,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
 
     func getBlendCIImage(input1 : CIImage, input2 : CIImage) -> CIImage {
         // カラーエフェクトを指定してCIFilterをインスタンス化.
+        // @see : http://galakutaapp.blogspot.jp/2016_07_01_archive.html
         let myComposeFilter = CIFilter(name: "CIMaximumCompositing")
         // イメージのセット.
         myComposeFilter?.setValue(input1, forKey: kCIInputImageKey)

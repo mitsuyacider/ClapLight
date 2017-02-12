@@ -51,8 +51,16 @@ class CLTopViewController : UIViewController {
             self.countImageView.image = UIImage(named: "start")
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.5) {
             print("fadeout")
+            if #available(iOS 10.0, *) {
+                let afterVc : CameraViewController = (self.storyboard?.instantiateViewController(withIdentifier: "CameraViewController")) as! CameraViewController
+                self.addChildViewController(afterVc)
+                self.view.addSubview(afterVc.view)
+                afterVc.didMove(toParentViewController: self)
+            } else {
+                // Fallback on earlier versions
+            }
         }
     }
 }
