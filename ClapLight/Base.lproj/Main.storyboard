@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="nBD-5x-DsR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3XO-Xr-Vv6">
     <device id="ipad9_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
@@ -80,7 +80,11 @@
                                 <rect key="frame" x="-1" y="0.0" width="1025" height="768"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x03-lX-HVT">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xdz-0Q-3E1">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x03-lX-HVT">
                                 <rect key="frame" x="130" y="132" width="764" height="131"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Take a picture"/>
@@ -88,20 +92,156 @@
                                     <action selector="takeIt:" destination="BYZ-38-t0r" eventType="touchUpInside" id="C6T-QE-UCh"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fRm-35-huk">
-                                <rect key="frame" x="130" y="64" width="764" height="115"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="exposure"/>
-                                <connections>
-                                    <action selector="tappedExposure:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TaN-WU-Jfb"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G3T-ux-iPB">
-                                <rect key="frame" x="130" y="199" width="764" height="158"/>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G3T-ux-iPB">
+                                <rect key="frame" x="130" y="271" width="764" height="158"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Generate"/>
                                 <connections>
                                     <action selector="tappedGenerateButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="JdR-6i-DbE"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hGu-5P-vDP">
+                                <rect key="frame" x="130" y="449" width="764" height="127"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="exposure"/>
+                                <connections>
+                                    <action selector="tappedExposure:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mtQ-Za-Bn1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JMZ-fA-0Of">
+                                <rect key="frame" x="20" y="21" width="87" height="70"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="戻る"/>
+                                <connections>
+                                    <action selector="tappedBackButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Zcw-Ci-Wer"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="0" translatesAutoresizingMaskIntoConstraints="NO" id="djQ-b5-uHW">
+                                <rect key="frame" x="403" y="286" width="104" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="1" translatesAutoresizingMaskIntoConstraints="NO" id="na7-tf-BAp">
+                                <rect key="frame" x="515" y="286" width="104" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" tag="100" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eid-og-lRL">
+                                <rect key="frame" x="46" y="449" width="168" height="71"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="CIMaximumCompositing"/>
+                                <connections>
+                                    <action selector="tappedFilterButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BNm-P4-kB4"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="101" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HpE-Kc-xxl">
+                                <rect key="frame" x="231" y="449" width="168" height="71"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="CIMultiplyCompositing"/>
+                                <connections>
+                                    <action selector="tappedFilterButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MO9-fe-abr"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="102" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TCn-4j-tA3">
+                                <rect key="frame" x="428" y="449" width="168" height="71"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="CIMultiplyCompositing"/>
+                                <connections>
+                                    <action selector="tappedFilterButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="l0m-rV-vbs"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="103" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ivK-dk-SpC">
+                                <rect key="frame" x="618" y="449" width="168" height="71"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="CIExposureAdjust"/>
+                                <connections>
+                                    <action selector="tappedFilterButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="P7P-CG-njm"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="104" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pyg-cv-gKK">
+                                <rect key="frame" x="803" y="449" width="175" height="71"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="CIColorDodgeBlendMode"/>
+                                <connections>
+                                    <action selector="tappedFilterButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NCK-lv-NZi"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="105" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0us-A5-7oV">
+                                <rect key="frame" x="46" y="545" width="168" height="71"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="CIMinimumCompositing"/>
+                                <connections>
+                                    <action selector="tappedFilterButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SID-ya-WEg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="106" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gqj-Z6-v8O">
+                                <rect key="frame" x="228" y="545" width="175" height="71"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="CISourceOutCompositing"/>
+                                <connections>
+                                    <action selector="tappedFilterButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="thj-ra-uZD"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="107" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="le3-PO-eET">
+                                <rect key="frame" x="428" y="545" width="168" height="71"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="CIDarkenBlendMode"/>
+                                <connections>
+                                    <action selector="tappedFilterButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="643-e1-J71"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="108" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ASd-Qw-jsQ">
+                                <rect key="frame" x="618" y="545" width="168" height="71"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="CIDivideBlendMode"/>
+                                <connections>
+                                    <action selector="tappedFilterButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OXf-2G-PS0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="109" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yoM-0s-kXD">
+                                <rect key="frame" x="803" y="545" width="168" height="71"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="CIDivideBlendMode"/>
+                                <connections>
+                                    <action selector="tappedFilterButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sUE-QU-mdV"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="110" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ABF-Ie-CKb">
+                                <rect key="frame" x="46" y="634" width="168" height="71"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="CILinearBurnBlendMode"/>
+                                <connections>
+                                    <action selector="tappedFilterButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="b3B-d6-lc8"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="111" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vmY-gQ-ZUS">
+                                <rect key="frame" x="231" y="634" width="168" height="71"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="CIMultiplyBlendMode"/>
+                                <connections>
+                                    <action selector="tappedFilterButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7XP-Ge-DGJ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="112" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xOq-35-Y2L">
+                                <rect key="frame" x="428" y="634" width="168" height="71"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="CIOverlayBlendMode"/>
+                                <connections>
+                                    <action selector="tappedFilterButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ud1-sA-Ned"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="113" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qFK-pL-J0h">
+                                <rect key="frame" x="618" y="634" width="168" height="71"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="CISourceInCompositing"/>
+                                <connections>
+                                    <action selector="tappedFilterButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DBu-Ea-m0V"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="114" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cz2-c1-hwm">
+                                <rect key="frame" x="806" y="634" width="168" height="71"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="CISubtractBlendMode"/>
+                                <connections>
+                                    <action selector="tappedFilterButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lLb-LY-UQu"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -109,13 +249,16 @@
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
+                        <outlet property="blendImageView" destination="Xdz-0Q-3E1" id="56B-GZ-3a0"/>
                         <outlet property="cameraView" destination="orL-X5-ukx" id="tv8-vC-qN7"/>
                         <outlet property="imageView" destination="pPa-v4-OMl" id="0Ki-24-w8y"/>
+                        <outlet property="oneDigits" destination="na7-tf-BAp" id="Vz7-bC-HwT"/>
+                        <outlet property="tenDigits" destination="djQ-b5-uHW" id="jrm-2B-nOC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-635" y="911"/>
+            <point key="canvasLocation" x="-635.15625" y="910.9375"/>
         </scene>
         <!--Cam Manual Camera View Controller-->
         <scene sceneID="lva-dY-LwT">
@@ -194,13 +337,13 @@
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i6u-70-kEc" userLabel="Manual HUD">
                                 <rect key="frame" x="20" y="50" width="984" height="634"/>
                                 <subviews>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="2" translatesAutoresizingMaskIntoConstraints="NO" id="1ij-U7-0z9">
+                                    <segmentedControl hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="2" translatesAutoresizingMaskIntoConstraints="NO" id="1ij-U7-0z9">
                                         <rect key="frame" x="0.0" y="0.0" width="984" height="29"/>
                                         <segments>
                                             <segment title="Photo" enabled="NO"/>
-                                            <segment title="Focus"/>
+                                            <segment title="Focus" enabled="NO"/>
                                             <segment title="Exposure"/>
-                                            <segment title="WB" enabled="NO"/>
+                                            <segment title="WB"/>
                                             <segment title="OIS" enabled="NO"/>
                                         </segments>
                                         <connections>
@@ -272,14 +415,14 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wek-1g-81Z">
                                         <rect key="frame" x="0.0" y="102" width="984" height="161"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mode" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RPl-MP-o9w">
-                                                <rect key="frame" x="0.0" y="6" width="56" height="17"/>
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mode" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RPl-MP-o9w">
+                                                <rect key="frame" x="0.0" y="6" width="100" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="2" translatesAutoresizingMaskIntoConstraints="NO" id="Mt4-dC-uCo">
-                                                <rect key="frame" x="64" y="0.0" width="920" height="29"/>
+                                            <segmentedControl hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="2" translatesAutoresizingMaskIntoConstraints="NO" id="Mt4-dC-uCo">
+                                                <rect key="frame" x="108" y="0.0" width="876" height="29"/>
                                                 <segments>
                                                     <segment title="Auto" enabled="NO"/>
                                                     <segment title="Locked" enabled="NO"/>
@@ -289,22 +432,23 @@
                                                     <action selector="changeExposureMode:" destination="nBD-5x-DsR" eventType="valueChanged" id="qGh-dd-CNd"/>
                                                 </connections>
                                             </segmentedControl>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Offset" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X2s-cK-zE6">
-                                                <rect key="frame" x="0.0" y="41" width="41" height="17"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="撮影時間" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X2s-cK-zE6">
+                                                <rect key="frame" x="0.0" y="41" width="57.5" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <slider opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="J0A-d2-cBd">
-                                                <rect key="frame" x="62" y="34" width="876" height="31"/>
+                                            <slider opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="5" maxValue="90" translatesAutoresizingMaskIntoConstraints="NO" id="J0A-d2-cBd">
+                                                <rect key="frame" x="106" y="34" width="832" height="31"/>
                                                 <connections>
+                                                    <action selector="changeOffsetValue:" destination="nBD-5x-DsR" eventType="valueChanged" id="vaj-s9-ztS"/>
                                                     <action selector="sliderTouchBegan:" destination="nBD-5x-DsR" eventType="touchDown" id="D8I-79-zrb"/>
                                                     <action selector="sliderTouchEnded:" destination="nBD-5x-DsR" eventType="touchUpOutside" id="MlL-Mw-K96"/>
                                                     <action selector="sliderTouchEnded:" destination="nBD-5x-DsR" eventType="touchUpInside" id="PSA-lG-HzB"/>
                                                     <action selector="sliderTouchEnded:" destination="nBD-5x-DsR" eventType="touchCancel" id="TTB-5h-2pN"/>
                                                 </connections>
                                             </slider>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="daK-at-pZZ">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="daK-at-pZZ">
                                                 <rect key="frame" x="944" y="41" width="40" height="17"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="40" id="gdq-aA-qrB"/>
@@ -314,7 +458,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="RtG-2t-fXI">
-                                                <rect key="frame" x="62" y="66" width="876" height="31"/>
+                                                <rect key="frame" x="106" y="66" width="832" height="31"/>
                                                 <connections>
                                                     <action selector="changeExposureDuration:" destination="nBD-5x-DsR" eventType="valueChanged" id="GbK-g5-Zj5"/>
                                                     <action selector="sliderTouchBegan:" destination="nBD-5x-DsR" eventType="touchDown" id="Ytg-32-0vJ"/>
@@ -336,7 +480,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Yj9-eq-pCo">
-                                                <rect key="frame" x="62" y="98" width="876" height="31"/>
+                                                <rect key="frame" x="106" y="98" width="832" height="31"/>
                                                 <connections>
                                                     <action selector="changeISO:" destination="nBD-5x-DsR" eventType="valueChanged" id="sTB-wa-iMc"/>
                                                     <action selector="sliderTouchBegan:" destination="nBD-5x-DsR" eventType="touchDown" id="SKk-h3-nb4"/>
@@ -351,14 +495,14 @@
                                                 <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bias" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ee6-uH-jc5">
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bias" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ee6-uH-jc5">
                                                 <rect key="frame" x="0.0" y="137" width="28" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="b29-CE-v7f">
-                                                <rect key="frame" x="62" y="130" width="876" height="31"/>
+                                            <slider hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="b29-CE-v7f">
+                                                <rect key="frame" x="106" y="130" width="832" height="31"/>
                                                 <connections>
                                                     <action selector="changeExposureTargetBias:" destination="nBD-5x-DsR" eventType="valueChanged" id="XKM-g8-6Od"/>
                                                     <action selector="sliderTouchBegan:" destination="nBD-5x-DsR" eventType="touchDown" id="ndU-HU-tE3"/>
@@ -367,14 +511,14 @@
                                                     <action selector="sliderTouchEnded:" destination="nBD-5x-DsR" eventType="touchUpOutside" id="x6x-4T-vbb"/>
                                                 </connections>
                                             </slider>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k9P-r8-20v">
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k9P-r8-20v">
                                                 <rect key="frame" x="975" y="137" width="9" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duration" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jLf-zv-8GC">
-                                                <rect key="frame" x="0.0" y="73" width="56" height="17"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="シャッター速度" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jLf-zv-8GC">
+                                                <rect key="frame" x="0.0" y="73" width="100" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -455,7 +599,7 @@
                                             <constraint firstAttribute="trailing" secondItem="Xu4-AY-ZLa" secondAttribute="trailing" id="zbh-8U-2yj"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TuA-Fu-Lxa">
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TuA-Fu-Lxa">
                                         <rect key="frame" x="0.0" y="290" width="984" height="126"/>
                                         <subviews>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Lcv-XT-wAY">
@@ -757,7 +901,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="0" width="225" height="225"/>
         <image name="03" width="1024" height="768"/>
+        <image name="1" width="225" height="225"/>
         <image name="top" width="1024" height="768"/>
     </resources>
 </document>

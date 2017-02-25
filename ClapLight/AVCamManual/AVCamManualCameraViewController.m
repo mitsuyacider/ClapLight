@@ -280,7 +280,7 @@ static const float kExposureMinimumDuration = 1.0/1000; // Limit exposure durati
 	// Manual focus controls
 	self.focusModes = @[@(AVCaptureFocusModeContinuousAutoFocus), @(AVCaptureFocusModeLocked)];
 	
-	self.focusModeControl.enabled = ( self.videoDevice != nil );
+    self.focusModeControl.enabled = ( self.videoDevice != nil );
 	self.focusModeControl.selectedSegmentIndex = [self.focusModes indexOfObject:@(self.videoDevice.focusMode)];
 	for ( NSNumber *mode in self.focusModes ) {
 		[self.focusModeControl setEnabled:[self.videoDevice isFocusModeSupported:mode.intValue] forSegmentAtIndex:[self.focusModes indexOfObject:mode]];
@@ -304,7 +304,15 @@ static const float kExposureMinimumDuration = 1.0/1000; // Limit exposure durati
 	// Use 0-1 as the slider range and do a non-linear mapping from the slider value to the actual device exposure duration
 	self.exposureDurationSlider.minimumValue = 0;
 	self.exposureDurationSlider.maximumValue = 1;
-	double exposureDurationSeconds = CMTimeGetSeconds( self.videoDevice.exposureDuration );
+	
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    int iso = (int)[defaults integerForKey:@"iso"];
+    double exposureDurationSeconds = [defaults doubleForKey:@"shutter_speed"];
+    int timeDuration = [defaults integerForKey:@"time_duration"];
+    //    double exposureDurationSeconds = CMTimeGetSeconds( self.videoDevice.exposureDuration );
+    
 	double minExposureDurationSeconds = MAX( CMTimeGetSeconds( self.videoDevice.activeFormat.minExposureDuration ), kExposureMinimumDuration );
 	double maxExposureDurationSeconds = CMTimeGetSeconds( self.videoDevice.activeFormat.maxExposureDuration );
 	// Map from duration to non-linear UI range 0-1
@@ -314,7 +322,7 @@ static const float kExposureMinimumDuration = 1.0/1000; // Limit exposure durati
 	
 	self.ISOSlider.minimumValue = self.videoDevice.activeFormat.minISO;
 	self.ISOSlider.maximumValue = self.videoDevice.activeFormat.maxISO;
-	self.ISOSlider.value = self.videoDevice.ISO;
+	self.ISOSlider.value = iso;
 	self.ISOSlider.enabled = ( self.videoDevice.exposureMode == AVCaptureExposureModeCustom );
 	
 	self.exposureTargetBiasSlider.minimumValue = self.videoDevice.minExposureTargetBias;
@@ -322,10 +330,15 @@ static const float kExposureMinimumDuration = 1.0/1000; // Limit exposure durati
 	self.exposureTargetBiasSlider.value = self.videoDevice.exposureTargetBias;
 	self.exposureTargetBiasSlider.enabled = ( self.videoDevice != nil );
 	
-	self.exposureTargetOffsetSlider.minimumValue = self.videoDevice.minExposureTargetBias;
-	self.exposureTargetOffsetSlider.maximumValue = self.videoDevice.maxExposureTargetBias;
-	self.exposureTargetOffsetSlider.value = self.videoDevice.exposureTargetOffset;
-	self.exposureTargetOffsetSlider.enabled = NO;
+//	self.exposureTargetOffsetSlider.minimumValue = self.videoDevice.minExposureTargetBias;
+//	self.exposureTargetOffsetSlider.maximumValue = self.videoDevice.maxExposureTargetBias;
+	
+    if (timeDuration < 5) {
+        timeDuration = 5;
+    }
+    self.exposureTargetOffsetValueLabel.text = [NSString stringWithFormat:@"%d", timeDuration];
+    self.exposureTargetOffsetSlider.value = timeDuration;
+	self.exposureTargetOffsetSlider.enabled = YES;
 	
 	// Manual white balance controls
 	self.whiteBalanceModes = @[@(AVCaptureWhiteBalanceModeContinuousAutoWhiteBalance), @(AVCaptureWhiteBalanceModeLocked)];
@@ -446,7 +459,36 @@ static const float kExposureMinimumDuration = 1.0/1000; // Limit exposure durati
 		[self.session addInput:videoDeviceInput];
 		self.videoDeviceInput = videoDeviceInput;
 		self.videoDevice = videoDevice;
-		
+
+        if ( [self.videoDevice lockForConfiguration:&error] ) {
+         
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            
+            int iso = (int)[defaults integerForKey:@"iso"];
+            double newDurationSeconds = [defaults doubleForKey:@"shutter_speed"];
+            
+            
+            if (newDurationSeconds <=  MAX( CMTimeGetSeconds( self.videoDevice.activeFormat.minExposureDuration ), kExposureMinimumDuration )) {
+                newDurationSeconds =  MAX( CMTimeGetSeconds( self.videoDevice.activeFormat.minExposureDuration ), kExposureMinimumDuration );
+            }
+            
+            if ( newDurationSeconds < 1 ) {
+                int digits = MAX( 0, 2 + floor( log10( newDurationSeconds ) ) );
+                self.exposureDurationValueLabel.text = [NSString stringWithFormat:@"1/%.*f", digits, 1/newDurationSeconds];
+            } else {
+                self.exposureDurationValueLabel.text = [NSString stringWithFormat:@"%.2f", newDurationSeconds];
+            }
+            
+            NSLog(@"newDurationSeconds =  %f", newDurationSeconds);
+            if (iso <= self.videoDevice.activeFormat.minISO) iso = self.videoDevice.activeFormat.minISO;
+            
+            // exposure
+            self.videoDevice.exposureMode = AVCaptureExposureModeCustom;
+            [self.videoDevice setExposureModeCustomWithDuration:CMTimeMakeWithSeconds( newDurationSeconds, 1000*1000*1000 ) ISO:iso completionHandler:nil];
+            [self.videoDevice unlockForConfiguration];
+        }
+
+        
 		dispatch_async( dispatch_get_main_queue(), ^{
 			/*
 				Why are we dispatching this to the main queue?
@@ -809,7 +851,18 @@ static const float kExposureMinimumDuration = 1.0/1000; // Limit exposure durati
 	double maxDurationSeconds = CMTimeGetSeconds( self.videoDevice.activeFormat.maxExposureDuration );
 	double newDurationSeconds = p * ( maxDurationSeconds - minDurationSeconds ) + minDurationSeconds; // Scale from 0-1 slider range to actual duration
     NSLog(@"newDurationSeconds =  %f", newDurationSeconds);
-	if ( [self.videoDevice lockForConfiguration:&error] ) {
+
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setDouble:newDurationSeconds forKey:@"shutter_speed"];
+    
+    if ( newDurationSeconds < 1 ) {
+        int digits = MAX( 0, 2 + floor( log10( newDurationSeconds ) ) );
+        self.exposureDurationValueLabel.text = [NSString stringWithFormat:@"1/%.*f", digits, 1/newDurationSeconds];
+    } else {
+        self.exposureDurationValueLabel.text = [NSString stringWithFormat:@"%.2f", newDurationSeconds];
+    }
+    
+    if ( [self.videoDevice lockForConfiguration:&error] ) {
 		[self.videoDevice setExposureModeCustomWithDuration:CMTimeMakeWithSeconds( newDurationSeconds, 1000*1000*1000 )  ISO:AVCaptureISOCurrent completionHandler:nil];
 		[self.videoDevice unlockForConfiguration];
 	}
@@ -823,6 +876,10 @@ static const float kExposureMinimumDuration = 1.0/1000; // Limit exposure durati
 	UISlider *control = sender;
 	NSError *error = nil;
 	
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setInteger:control.value forKey:@"iso"];
+    NSLog(@"*** setting iso = %f", control.value);
+
 	if ( [self.videoDevice lockForConfiguration:&error] ) {
 		[self.videoDevice setExposureModeCustomWithDuration:AVCaptureExposureDurationCurrent ISO:control.value completionHandler:nil];
 		[self.videoDevice unlockForConfiguration];
@@ -920,6 +977,15 @@ static const float kExposureMinimumDuration = 1.0/1000; // Limit exposure durati
 	
 	return g;
 }
+
+- (IBAction)changeOffsetValue:(id)sender {
+    UISlider *control = sender;
+
+    self.exposureTargetOffsetValueLabel.text = [NSString stringWithFormat:@"%d", (int)control.value];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setInteger:(int)control.value forKey:@"time_duration"];
+}
+
 
 #pragma mark Capturing Photos
 
@@ -1201,13 +1267,13 @@ static const float kExposureMinimumDuration = 1.0/1000; // Limit exposure durati
 				if ( exposureMode != AVCaptureExposureModeCustom ) {
 					self.exposureDurationSlider.value = pow( p, 1 / kExposureDurationPower ); // Apply inverse power
 				}
-				if ( newDurationSeconds < 1 ) {
-					int digits = MAX( 0, 2 + floor( log10( newDurationSeconds ) ) );
-					self.exposureDurationValueLabel.text = [NSString stringWithFormat:@"1/%.*f", digits, 1/newDurationSeconds];
-				}
-				else {
-					self.exposureDurationValueLabel.text = [NSString stringWithFormat:@"%.2f", newDurationSeconds];
-				}
+//				if ( newDurationSeconds < 1 ) {
+//					int digits = MAX( 0, 2 + floor( log10( newDurationSeconds ) ) );
+//					self.exposureDurationValueLabel.text = [NSString stringWithFormat:@"1/%.*f", digits, 1/newDurationSeconds];
+//				}
+//				else {
+//					self.exposureDurationValueLabel.text = [NSString stringWithFormat:@"%.2f", newDurationSeconds];
+//				}
 			} );
 		}
 	}
@@ -1233,6 +1299,7 @@ static const float kExposureMinimumDuration = 1.0/1000; // Limit exposure durati
 		}
 	}
 	else if ( context == ExposureTargetOffsetContext ) {
+        /*
 		if ( newValue && newValue != [NSNull null] ) {
 			float newExposureTargetOffset = [newValue floatValue];
 			dispatch_async( dispatch_get_main_queue(), ^{
@@ -1240,6 +1307,7 @@ static const float kExposureMinimumDuration = 1.0/1000; // Limit exposure durati
 				self.exposureTargetOffsetValueLabel.text = [NSString stringWithFormat:@"%.1f", newExposureTargetOffset];
 			} );
 		}
+         */
 	}
 	else if ( context == WhiteBalanceModeContext ) {
 		if ( newValue && newValue != [NSNull null] ) {

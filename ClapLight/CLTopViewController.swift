@@ -58,6 +58,8 @@ class CLTopViewController : UIViewController {
                 self.addChildViewController(afterVc)
                 self.view.addSubview(afterVc.view)
                 afterVc.didMove(toParentViewController: self)
+                self.countImageView.alpha = 0
+                self.countImageView.image = UIImage(named: "03")
             } else {
                 // Fallback on earlier versions
             }
