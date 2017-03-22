@@ -349,18 +349,18 @@ static const float kExposureMinimumDuration = 1.0/1000; // Limit exposure durati
 		[self.whiteBalanceModeControl setEnabled:[self.videoDevice isWhiteBalanceModeSupported:mode.intValue] forSegmentAtIndex:[self.whiteBalanceModes indexOfObject:mode]];
 	}
 	
-	AVCaptureWhiteBalanceGains whiteBalanceGains = self.videoDevice.deviceWhiteBalanceGains;
-	AVCaptureWhiteBalanceTemperatureAndTintValues whiteBalanceTemperatureAndTint = [self.videoDevice temperatureAndTintValuesForDeviceWhiteBalanceGains:whiteBalanceGains];
-	
-	self.temperatureSlider.minimumValue = 3000;
-	self.temperatureSlider.maximumValue = 8000;
-	self.temperatureSlider.value = whiteBalanceTemperatureAndTint.temperature;
-	self.temperatureSlider.enabled = ( self.videoDevice && self.videoDevice.whiteBalanceMode == AVCaptureWhiteBalanceModeLocked );
-	
-	self.tintSlider.minimumValue = -150;
-	self.tintSlider.maximumValue = 150;
-	self.tintSlider.value = whiteBalanceTemperatureAndTint.tint;
-	self.tintSlider.enabled = ( self.videoDevice && self.videoDevice.whiteBalanceMode == AVCaptureWhiteBalanceModeLocked );
+//	AVCaptureWhiteBalanceGains whiteBalanceGains = self.videoDevice.deviceWhiteBalanceGains;
+//	AVCaptureWhiteBalanceTemperatureAndTintValues whiteBalanceTemperatureAndTint = [self.videoDevice temperatureAndTintValuesForDeviceWhiteBalanceGains:whiteBalanceGains];
+//	
+//	self.temperatureSlider.minimumValue = 3000;
+//	self.temperatureSlider.maximumValue = 8000;
+//	self.temperatureSlider.value = whiteBalanceTemperatureAndTint.temperature;
+//	self.temperatureSlider.enabled = ( self.videoDevice && self.videoDevice.whiteBalanceMode == AVCaptureWhiteBalanceModeLocked );
+//	
+//	self.tintSlider.minimumValue = -150;
+//	self.tintSlider.maximumValue = 150;
+//	self.tintSlider.value = whiteBalanceTemperatureAndTint.tint;
+//	self.tintSlider.enabled = ( self.videoDevice && self.videoDevice.whiteBalanceMode == AVCaptureWhiteBalanceModeLocked );
 	
 	self.lensStabilizationControl.enabled = ( self.videoDevice != nil );
 	self.lensStabilizationControl.selectedSegmentIndex = 0;

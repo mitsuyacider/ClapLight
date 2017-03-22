@@ -38,28 +38,25 @@ class CLTopViewController : UIViewController {
     func executeCountDown() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             // your code here
-            print("2")
-            self.countImageView.image = UIImage(named: "02")
+            self.countImageView.image = UIImage(named: "op_2")
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.countImageView.image = UIImage(named: "01")
+            self.countImageView.image = UIImage(named: "op_1")
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            print("start")
-            self.countImageView.image = UIImage(named: "start")
+            self.countImageView.image = UIImage(named: "op_start")
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.5) {
-            print("fadeout")
             if #available(iOS 10.0, *) {
                 let afterVc : CameraViewController = (self.storyboard?.instantiateViewController(withIdentifier: "CameraViewController")) as! CameraViewController
                 self.addChildViewController(afterVc)
                 self.view.addSubview(afterVc.view)
                 afterVc.didMove(toParentViewController: self)
                 self.countImageView.alpha = 0
-                self.countImageView.image = UIImage(named: "03")
+                self.countImageView.image = UIImage(named: "op_3")
             } else {
                 // Fallback on earlier versions
             }

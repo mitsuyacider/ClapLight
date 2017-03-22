@@ -7,21 +7,25 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, AVC
     // カメラの映像をここに表示
     @IBOutlet weak var cameraView: UIView!
     @IBOutlet weak var blendImageView: UIImageView!
-    
     @IBOutlet weak var oneDigits: UIImageView!
     @IBOutlet weak var tenDigits: UIImageView!
+    @IBOutlet weak var bgImageView: UIImageView!
     var captureSesssion: AVCaptureSession!
     var stillImageOutput: AVCapturePhotoOutput?
     var previewLayer: AVCaptureVideoPreviewLayer?
     var captureDevice : AVCaptureDevice?
     var imageList : [CIImage] = []
     var timer : Timer?
-    
     var output:AVCaptureVideoDataOutput!
     var myImageOutput: AVCaptureStillImageOutput!
-    
     var enableToKeep = false
     var timeCount = 0
+    var isFinished = false
+    var blendCIImage : CIImage?
+    var beforeCIImage : CIImage?
+    var currentUIImage : UIImage?
+    var startDate: Date?
+    var totalDuration = 0
     
     override var prefersStatusBarHidden: Bool {
         return true
@@ -66,8 +70,10 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, AVC
         var duration = defaults.integer(forKey: "time_duration")
         duration = duration < 5 ? 5 : duration
         timeCount = duration
+        totalDuration = duration
         
-        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.update), userInfo: nil, repeats: true)
+        startDate = Date()
+        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.update), userInfo: nil, repeats: true)
         timer?.fire()
         
         
@@ -75,13 +81,17 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, AVC
         if (!enableToKeep) {
             imageList.removeAll()
             enableToKeep = true
-            blendImageView.image = nil
+//            blendImageView.image = nil
         }
         
         self.displayCount()
     }
     
     func displayCount() {
+        if (timeCount < 0) {
+            return
+        }
+        
         var one : Int = 0
         var ten : Int = 0
         if (timeCount >= 10) {
@@ -93,36 +103,39 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, AVC
             ten = 0
         }
         
-        tenDigits.image = UIImage.init(named: ten.description + ".png")
-        oneDigits.image = UIImage.init(named: one.description + ".png")
+        tenDigits.image = UIImage.init(named: "num_" + ten.description + ".png")
+        oneDigits.image = UIImage.init(named: "num_" + one.description + ".png")
+        
+        // Update bg image
+        let count = (timeCount % 3) + 1
+        let fileName = "start_bg_" + count.description
+        bgImageView.image = UIImage.init(named: fileName)
     }
     
     func update(tm: Timer) {
-        // シャッターを切る
-        /*
-        let settingsForMonitoring = AVCapturePhotoSettings()
-        settingsForMonitoring.isAutoStillImageStabilizationEnabled = true
-        settingsForMonitoring.isHighResolutionPhotoEnabled = false
-        stillImageOutput?.capturePhoto(with: settingsForMonitoring, delegate: self)
         
-        */
+        //現在の時間を取得
+        let time = NSDate().timeIntervalSince(startDate!)
+        let hh = Int(time / 3600)
+        let mm = Int((time - Double(hh * 3600)) / 60)
+        let ss = Int(time - Double(hh * 3600 + mm * 60))
         
-        /*
-        // ビデオ出力に接続.
-        let myVideoConnection = self.myImageOutput?.connection(withMediaType: AVMediaTypeVideo)
+        print(ss)
+        timeCount = totalDuration - ss
         
-        // 接続から画像を取得.
-        self.myImageOutput.captureStillImageAsynchronously(from: myVideoConnection, completionHandler: {(imageDataBuffer, error) in
-            print("***")
-        })
-         */
+        if (timeCount == 0) {
+            bgImageView.image = UIImage.init(named: "end")
+            tenDigits.isHidden = true
+            oneDigits.isHidden = true
+            self.captureSesssion.stopRunning()
+        } else {
+            self.displayCount()
+        }
         
         
-        timeCount -= 1
-        if (timeCount <= 0 ) {
+        if (timeCount <= -3) {
             generate()
         }
-        self.displayCount()
     }
     
     @IBAction func tappedBackButton(_ sender: Any) {
@@ -131,7 +144,6 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, AVC
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
         
         captureSesssion = AVCaptureSession()
         stillImageOutput = AVCapturePhotoOutput()
@@ -200,47 +212,6 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, AVC
                     }
                 } catch _ {
                 }
-                
-                
-                
-                /*
-                // 出力
-                if (captureSesssion.canAddOutput(stillImageOutput)) {
-                    captureSesssion.addOutput(stillImageOutput)
-                    captureSesssion.startRunning()
-                    previewLayer = AVCaptureVideoPreviewLayer(session: captureSesssion)
-                    // Fullscreen
-                    previewLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill
-                    
-                    // NOTE: Should let the orientation fit by current orientation
-                    previewLayer?.connection.videoOrientation = AVCaptureVideoOrientation.landscapeLeft
-                    
-                    cameraView.layer.addSublayer(previewLayer!)
-                    
-                    // Adjust view size
-                    previewLayer?.frame.size.width = cameraView.frame.size.width
-                    previewLayer?.frame.size.height = cameraView.frame.size.height
-                }
-                */
-                
-                /*
-                // 出力先を生成.
-                myImageOutput = AVCaptureStillImageOutput()
-                
-                // セッションに追加.
-                captureSesssion.addOutput(myImageOutput)
-                previewLayer = AVCaptureVideoPreviewLayer(session: captureSesssion)
-                // Fullscreen
-                previewLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill
-                
-                // NOTE: Should let the orientation fit by current orientation
-                previewLayer?.connection.videoOrientation = AVCaptureVideoOrientation.landscapeLeft
-                cameraView.layer.addSublayer(previewLayer!)
-                // Adjust view size
-                previewLayer?.frame.size.width = cameraView.frame.size.width
-                previewLayer?.frame.size.height = cameraView.frame.size.height
-                captureSesssion.startRunning()
-                */
             }
         }
         catch {
@@ -278,22 +249,67 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, AVC
     
     // 新しいキャプチャの追加で呼ばれる
     func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
-        
-        // キャプチャしたsampleBufferからUIImageを作成
-        let image:UIImage = self.captureImage(sampleBuffer: sampleBuffer)
-
-        // 画像を画面に表示
-        self.imageView.image = image
-        
-        if (enableToKeep) {
-            if let cimage = CIImage(image: image) {
-                imageList.append(cimage)
+       
+        autoreleasepool {
+            // キャプチャしたsampleBufferからUIImageを作成
+            let image:UIImage = self.captureImage(sampleBuffer: sampleBuffer)
+            
+            // 画像を画面に表示
+            let flipImage = flipHorizontal(image: image)
+            self.imageView.image = flipImage
+            
+            if (enableToKeep) {
+                if let cimage = CIImage(image: flipImage) {
+                    
+                    if (beforeCIImage != nil) {
+                        let currentCIImage = getBlendCIImage(input1: self.beforeCIImage!, input2: cimage, filter: "CIMaximumCompositing")
+                        let context = CIContext(options: nil)
+                        let cgImage = context.createCGImage(currentCIImage, from: (currentCIImage.extent))
+                        self.blendCIImage = CIImage.init(cgImage: cgImage!)
+                    }
+                    
+                    if (self.blendCIImage != nil) {
+                        beforeCIImage = self.blendCIImage
+                    } else {
+                        beforeCIImage = cimage
+                    }
+                }
             }
         }
+        
     }
+    
+    func flipHorizontal(image: UIImage) -> UIImage {
+        let originalOrientation = image.imageOrientation
+        let landscapeImage = UIImage(cgImage: image.cgImage!, scale: image.scale, orientation: .up)
+        
+        UIGraphicsBeginImageContextWithOptions(landscapeImage.size, false, landscapeImage.scale)
+        let context = UIGraphicsGetCurrentContext()
+        
+        context!.translateBy(x: 0, y: landscapeImage.size.height)
+        context!.scaleBy(x: 1.0, y: -1.0)
+        
+        switch originalOrientation {
+        case .up, .upMirrored, .down, .downMirrored:
+            context!.translateBy(x: landscapeImage.size.width, y: 0)
+            context!.scaleBy(x: -1.0, y: 1.0)
+        case .left, .leftMirrored, .right, .rightMirrored:
+            context!.translateBy(x: 0, y: landscapeImage.size.height)
+            context!.scaleBy(x: 1.0, y: -1.0)
+        }
+        
+        // 画像を描画
+        context?.draw(landscapeImage.cgImage!, in: CGRect(origin: CGPoint.zero, size: landscapeImage.size))
+        let flipHorizontalImage = UIGraphicsGetImageFromCurrentImageContext()
+        
+        UIGraphicsEndImageContext()
+        return UIImage(cgImage: flipHorizontalImage!.cgImage!, scale: flipHorizontalImage!.scale, orientation: originalOrientation)
+    }
+    
     
     // sampleBufferからUIImageを作成
     func captureImage(sampleBuffer:CMSampleBuffer) -> UIImage{
+        
         
         // Sampling Bufferから画像を取得
         let imageBuffer:CVImageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)!
@@ -317,23 +333,9 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, AVC
         
         let imageRef:CGImage = newContext.makeImage()!
         let resultImage = UIImage(cgImage: imageRef, scale: 1.0, orientation: UIImageOrientation.up)
+        CVPixelBufferUnlockBaseAddress(imageBuffer,CVPixelBufferLockFlags(rawValue: 0))
         
         return resultImage
-    }
-    
-    
-    // デリゲート。カメラで撮影が完了した後呼ばれる。JPEG形式でフォトライブラリに保存。
-    func capture(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingPhotoSampleBuffer photoSampleBuffer: CMSampleBuffer?, previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
-        
-        if let photoSampleBuffer = photoSampleBuffer {
-            // JPEG形式で画像データを取得
-            let photoData = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: photoSampleBuffer, previewPhotoSampleBuffer: previewPhotoSampleBuffer)
-            let image : UIImage? = UIImage(data: photoData!)
-            
-            if let cimage = CIImage(image: image!) {
-                imageList.append(cimage)
-            }
-        }
     }
     
     @IBAction func tappedGenerateButton() {
@@ -345,26 +347,20 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, AVC
             timer?.invalidate()
         }
         
-        if imageList.count < 2 {
-            return
+        // CIImage -> CGImage -> UIImage -> Data
+        let context = CIContext(options: nil)
+        let cgImage = context.createCGImage(self.blendCIImage!, from: (self.blendCIImage?.extent)!)
+        let uiimage = UIImage(cgImage: cgImage!)
+        self.blendImageView.image = uiimage
+        UIView.animate(withDuration: 1, animations: {
+            self.bgImageView.alpha = 0
+        }) { (completed) in
+            self.enableToKeep = false
+            self.isFinished = true
+            
+            // Save blend image to cameraroll
+            UIImageWriteToSavedPhotosAlbum(uiimage, self, #selector(self.finishedSaveing(_:didFinishSavingWithError:contextInfo:)), nil)
         }
-        
-        var blendCIImage : CIImage? = getBlendCIImage(input1: imageList[0], input2: imageList[1], filter: "CIMaximumCompositing")
-        
-        
-        for i in 2..<imageList.count {
-            if (blendCIImage != nil) {
-                let image : CIImage? = getBlendCIImage(input1: imageList[i], input2: blendCIImage!, filter: "CIMaximumCompositing")
-                if (image != nil) {
-                    blendCIImage = image!
-                }
-            }
-        }
-        
-        blendImageView.image = UIImage(ciImage: blendCIImage!)
-        blendImageView.setNeedsDisplay()
-        
-        enableToKeep = false
     }
 
     func getBlendCIImage(input1 : CIImage, input2 : CIImage, filter: String) -> CIImage {
@@ -381,9 +377,11 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, AVC
     }
     
     @IBAction func tappedFilterButton(_ sender: UIButton) {
+        /*
         if (timer != nil && (timer?.isValid)!) {
             timer?.invalidate()
         }
+        
         
         if imageList.count < 2 {
             return
@@ -407,7 +405,30 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, AVC
         blendImageView.setNeedsDisplay()
         
         enableToKeep = false
+         */
 
     }
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if (isFinished) {
+            UIView.animate(withDuration: 1, animations: {
+                self.view.alpha = 0
+            }, completion: { (completed) in
+                self.view.removeFromSuperview()
+                self.removeFromParentViewController()
+            })
+        }
+        
+    }
     
+    func finishedSaveing(_ image: UIImage, didFinishSavingWithError error: NSError!, contextInfo: UnsafeMutableRawPointer) {
+        
+        if error != nil {
+            let title = "エラー"
+            let message = "保存に失敗しました"
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
 }

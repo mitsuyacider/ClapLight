@@ -21,7 +21,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="top" translatesAutoresizingMaskIntoConstraints="NO" id="I5l-Nb-4ar">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="home" translatesAutoresizingMaskIntoConstraints="NO" id="I5l-Nb-4ar">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <gestureRecognizers/>
@@ -29,15 +29,16 @@
                                     <outletCollection property="gestureRecognizers" destination="NyI-Y5-cAX" appends="YES" id="Z6e-BU-nIU"/>
                                 </connections>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4bQ-QO-6Yc">
-                                <rect key="frame" x="942" y="41" width="22" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4bQ-QO-6Yc">
+                                <rect key="frame" x="802" y="680" width="155" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" image="home_adjustment_btn"/>
                                 <connections>
                                     <segue destination="nBD-5x-DsR" kind="show" id="wzB-IV-Xiw"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="03" translatesAutoresizingMaskIntoConstraints="NO" id="2eR-Rt-Onp">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="op_3" translatesAutoresizingMaskIntoConstraints="NO" id="2eR-Rt-Onp">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
@@ -108,7 +109,7 @@
                                     <action selector="tappedExposure:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mtQ-Za-Bn1"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JMZ-fA-0Of">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JMZ-fA-0Of">
                                 <rect key="frame" x="20" y="21" width="87" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="戻る"/>
@@ -116,15 +117,7 @@
                                     <action selector="tappedBackButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Zcw-Ci-Wer"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="0" translatesAutoresizingMaskIntoConstraints="NO" id="djQ-b5-uHW">
-                                <rect key="frame" x="403" y="286" width="104" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="1" translatesAutoresizingMaskIntoConstraints="NO" id="na7-tf-BAp">
-                                <rect key="frame" x="515" y="286" width="104" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <button opaque="NO" tag="100" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eid-og-lRL">
+                            <button hidden="YES" opaque="NO" tag="100" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eid-og-lRL">
                                 <rect key="frame" x="46" y="449" width="168" height="71"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="CIMaximumCompositing"/>
@@ -132,7 +125,7 @@
                                     <action selector="tappedFilterButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BNm-P4-kB4"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="101" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HpE-Kc-xxl">
+                            <button hidden="YES" opaque="NO" tag="101" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HpE-Kc-xxl">
                                 <rect key="frame" x="231" y="449" width="168" height="71"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="CIMultiplyCompositing"/>
@@ -140,7 +133,7 @@
                                     <action selector="tappedFilterButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MO9-fe-abr"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="102" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TCn-4j-tA3">
+                            <button hidden="YES" opaque="NO" tag="102" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TCn-4j-tA3">
                                 <rect key="frame" x="428" y="449" width="168" height="71"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="CIMultiplyCompositing"/>
@@ -148,7 +141,7 @@
                                     <action selector="tappedFilterButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="l0m-rV-vbs"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="103" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ivK-dk-SpC">
+                            <button hidden="YES" opaque="NO" tag="103" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ivK-dk-SpC">
                                 <rect key="frame" x="618" y="449" width="168" height="71"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="CIExposureAdjust"/>
@@ -156,7 +149,7 @@
                                     <action selector="tappedFilterButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="P7P-CG-njm"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="104" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pyg-cv-gKK">
+                            <button hidden="YES" opaque="NO" tag="104" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pyg-cv-gKK">
                                 <rect key="frame" x="803" y="449" width="175" height="71"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="CIColorDodgeBlendMode"/>
@@ -164,7 +157,7 @@
                                     <action selector="tappedFilterButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NCK-lv-NZi"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="105" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0us-A5-7oV">
+                            <button hidden="YES" opaque="NO" tag="105" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0us-A5-7oV">
                                 <rect key="frame" x="46" y="545" width="168" height="71"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="CIMinimumCompositing"/>
@@ -172,7 +165,7 @@
                                     <action selector="tappedFilterButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SID-ya-WEg"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="106" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gqj-Z6-v8O">
+                            <button hidden="YES" opaque="NO" tag="106" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gqj-Z6-v8O">
                                 <rect key="frame" x="228" y="545" width="175" height="71"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="CISourceOutCompositing"/>
@@ -180,7 +173,7 @@
                                     <action selector="tappedFilterButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="thj-ra-uZD"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="107" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="le3-PO-eET">
+                            <button hidden="YES" opaque="NO" tag="107" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="le3-PO-eET">
                                 <rect key="frame" x="428" y="545" width="168" height="71"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="CIDarkenBlendMode"/>
@@ -188,7 +181,7 @@
                                     <action selector="tappedFilterButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="643-e1-J71"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="108" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ASd-Qw-jsQ">
+                            <button hidden="YES" opaque="NO" tag="108" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ASd-Qw-jsQ">
                                 <rect key="frame" x="618" y="545" width="168" height="71"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="CIDivideBlendMode"/>
@@ -196,7 +189,7 @@
                                     <action selector="tappedFilterButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OXf-2G-PS0"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="109" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yoM-0s-kXD">
+                            <button hidden="YES" opaque="NO" tag="109" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yoM-0s-kXD">
                                 <rect key="frame" x="803" y="545" width="168" height="71"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="CIDivideBlendMode"/>
@@ -204,7 +197,7 @@
                                     <action selector="tappedFilterButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sUE-QU-mdV"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="110" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ABF-Ie-CKb">
+                            <button hidden="YES" opaque="NO" tag="110" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ABF-Ie-CKb">
                                 <rect key="frame" x="46" y="634" width="168" height="71"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="CILinearBurnBlendMode"/>
@@ -212,7 +205,7 @@
                                     <action selector="tappedFilterButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="b3B-d6-lc8"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="111" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vmY-gQ-ZUS">
+                            <button hidden="YES" opaque="NO" tag="111" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vmY-gQ-ZUS">
                                 <rect key="frame" x="231" y="634" width="168" height="71"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="CIMultiplyBlendMode"/>
@@ -220,7 +213,7 @@
                                     <action selector="tappedFilterButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7XP-Ge-DGJ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="112" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xOq-35-Y2L">
+                            <button hidden="YES" opaque="NO" tag="112" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xOq-35-Y2L">
                                 <rect key="frame" x="428" y="634" width="168" height="71"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="CIOverlayBlendMode"/>
@@ -228,7 +221,7 @@
                                     <action selector="tappedFilterButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ud1-sA-Ned"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="113" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qFK-pL-J0h">
+                            <button hidden="YES" opaque="NO" tag="113" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qFK-pL-J0h">
                                 <rect key="frame" x="618" y="634" width="168" height="71"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="CISourceInCompositing"/>
@@ -236,7 +229,7 @@
                                     <action selector="tappedFilterButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DBu-Ea-m0V"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="114" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cz2-c1-hwm">
+                            <button hidden="YES" opaque="NO" tag="114" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cz2-c1-hwm">
                                 <rect key="frame" x="806" y="634" width="168" height="71"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="CISubtractBlendMode"/>
@@ -244,11 +237,24 @@
                                     <action selector="tappedFilterButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lLb-LY-UQu"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="start_bg_1" translatesAutoresizingMaskIntoConstraints="NO" id="Uwr-cL-mmx">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="num_0" translatesAutoresizingMaskIntoConstraints="NO" id="djQ-b5-uHW">
+                                <rect key="frame" x="312" y="223" width="214" height="302"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="num_0" translatesAutoresizingMaskIntoConstraints="NO" id="na7-tf-BAp">
+                                <rect key="frame" x="526" y="223" width="214" height="302"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
+                        <outlet property="bgImageView" destination="Uwr-cL-mmx" id="Ofg-Z3-Hvi"/>
                         <outlet property="blendImageView" destination="Xdz-0Q-3E1" id="56B-GZ-3a0"/>
                         <outlet property="cameraView" destination="orL-X5-ukx" id="tv8-vC-qN7"/>
                         <outlet property="imageView" destination="pPa-v4-OMl" id="0Ki-24-w8y"/>
@@ -901,9 +907,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="0" width="225" height="225"/>
-        <image name="03" width="1024" height="768"/>
-        <image name="1" width="225" height="225"/>
-        <image name="top" width="1024" height="768"/>
+        <image name="home" width="2048" height="1536"/>
+        <image name="home_adjustment_btn" width="310" height="80"/>
+        <image name="num_0" width="412" height="604"/>
+        <image name="op_3" width="2048" height="1536"/>
+        <image name="start_bg_1" width="2048" height="1536"/>
     </resources>
 </document>
