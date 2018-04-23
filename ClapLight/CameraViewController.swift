@@ -332,7 +332,18 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, AVC
         let newContext:CGContext = CGContext(data: baseAddress, width: width, height: height, bitsPerComponent: bitsPerCompornent, bytesPerRow: bytesPerRow, space: colorSpace,  bitmapInfo: CGImageAlphaInfo.premultipliedFirst.rawValue|CGBitmapInfo.byteOrder32Little.rawValue)!
         
         let imageRef:CGImage = newContext.makeImage()!
-        let resultImage = UIImage(cgImage: imageRef, scale: 1.0, orientation: UIImageOrientation.up)
+        
+        let orientation = UIApplication.shared.statusBarOrientation
+        var imageOrientation = UIImage().imageOrientation
+        if (orientation == UIInterfaceOrientation.landscapeLeft) {
+            imageOrientation = UIImageOrientation.up
+        } else if(orientation == UIInterfaceOrientation.landscapeRight) {
+            imageOrientation = UIImageOrientation.right
+        } else {
+            imageOrientation = UIImageOrientation.left
+        }
+        
+        let resultImage = UIImage(cgImage: imageRef, scale: 1.0, orientation: imageOrientation)
         CVPixelBufferUnlockBaseAddress(imageBuffer,CVPixelBufferLockFlags(rawValue: 0))
         
         return resultImage

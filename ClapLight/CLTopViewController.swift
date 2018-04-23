@@ -48,7 +48,7 @@ class CLTopViewController : UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.countImageView.image = UIImage(named: "op_start")
         }
-        
+
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.5) {
             if #available(iOS 10.0, *) {
                 let afterVc : CameraViewController = (self.storyboard?.instantiateViewController(withIdentifier: "CameraViewController")) as! CameraViewController
@@ -59,6 +59,7 @@ class CLTopViewController : UIViewController {
                 self.countImageView.image = UIImage(named: "op_3")
             } else {
                 // Fallback on earlier versions
+                print("ios 10.0 or earlier")
             }
         }
     }
